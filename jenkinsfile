@@ -9,7 +9,7 @@ pipeline {
             steps{
                 script{
                     echo"building the application"
-                    sh "mvn clean package" #builds a jar file also you have to install maven in jenkins
+                    sh "mvn clean package" 
                 }
             }
         }

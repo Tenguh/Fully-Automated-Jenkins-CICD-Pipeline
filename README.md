@@ -70,3 +70,36 @@ email address --> tenguhh@yahoo.com
 click on **save and continue**
 click **save and finish**
 click on **start using jenkins**
+
+**4** Install Plugins
+Maven
+go to manage Jenkins
+click on tools
+scroll right to the bottom
+click on  Add Maven
+give it a name maven-3.6
+click the dropdown and select the version as 3.6.0
+click on apply and save
+![](maven.png)
+
+Creating the Jenkinsfile
+Stage 1:This stage builds the jar file.
+```
+#!usr/bin/env groovy
+pipeline {
+    agent any
+    tools{
+        maven 'maven-3.6'
+    }
+    stages{
+        stage(build app){
+            steps{
+                script{
+                    echo"building the application"
+                    sh "mvn clean package" 
+                }
+            }
+        }
+    }
+}
+```
