@@ -16,7 +16,7 @@ HTTP → Port 80 → Source: 0.0.0.0/0
 Custom TCP → Port 8080 → Source: 0.0.0.0/0 (for Jenkins)
 Click Launch Instance
 
-2. Install Jenkins on the EC2 Instance
+2. Install Jenkins & Git on the EC2 Instance
 SSH into the instance
 ![](ssh.png)
 Then install Jenkins with the following commands
@@ -40,6 +40,8 @@ sudo systemctl enable jenkins
 sudo systemctl start jenkins
 
 sudo systemctl status jenkins
+sudo yum install -y git
+
 ```
 
 
@@ -72,7 +74,7 @@ click **save and finish**
 click on **start using jenkins**
 
 **4** Install Plugins
-Maven
+- Maven
 go to manage Jenkins
 click on tools
 scroll right to the bottom
@@ -82,7 +84,9 @@ click the dropdown and select the version as 3.6.0
 click on apply and save
 ![](maven.png)
 
-Creating the Jenkinsfile
+- pipeline, stage view, git, docker pipeline
+
+**5** Creating the Jenkinsfile
 Stage 1:This stage builds the jar file.
 ```
 #!usr/bin/env groovy
@@ -103,3 +107,28 @@ pipeline {
     }
 }
 ```
+**6** Pushing the first stage to the repository
+Git add .
+git commit -m "adding first stage"
+git push
+
+**7** Creat a Job
+go back to dashboard
+click on create a job
+enter the item name **jenkins-terraform-project**
+select pipeline and click ok
+![](newjob-1.png)
+
+**8** Configuring the pipeline
+Dashboard --> jenkins-terraform-project --> configuration
+scroll down to pipeline
+select a pipeline from SCM
+click on the dropdown at SCM and select git
+Add the git URL and credentials
+Under crudentials click on add
+input your username and password
+click on add
+click on the dropdown arrow for credentials and select the crudentials you just added.
+select the branch you are using on your repo **main**
+click on save
+click on build now
