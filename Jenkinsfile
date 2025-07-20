@@ -5,11 +5,12 @@ pipeline {
         maven 'maven-3.6'
     }
     stages{
-        stage(build app){
+        stage('build app'){
             steps{
                 script{
                     echo"building the application"
-                    sh "mvn clean package" 
+                    sh "mvn clean package" // temp update to trigger Git commit
+
                 }
             }
         }
