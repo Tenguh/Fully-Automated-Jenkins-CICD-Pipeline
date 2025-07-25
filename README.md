@@ -140,7 +140,36 @@ click on the build link
 click on target
 !(Target folder.png)
 
-Stage 2: Build Docker Image and push to DockerHub
+Stage 2: Install and Build Docker Image then push image to DockerHub
+a.) Install Docker on EC2 Server
+```
+sudo yum update -y
+sudo yum install -y docker
+sudo systemctl start docker
+sudo usermod -aG docker ec2-user
+```
+exit the server and login again
+run 
+```
+docker ps
+```
+if you have permission denied you need to add jenkis to the sudoers group
+```
+sudo visudo
+```
+scroll down to where you find root and add jenkins
+![](jenkins-1.png)
+
+exit the script
+
+ To let Jenkins run Docker commands without permission errorsrun the command
+```
+sudo usermod -aG docker jenkins
+```
+Exit and run
+```
+docker ps
+```
 create a file called Dockerfile
 in other to push the image to dockerhub, we need to add our credentials in jenkins
 
