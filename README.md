@@ -96,7 +96,7 @@ pipeline {
         maven 'maven-3.6'
     }
     stages{
-        stage(build app){
+        stage('build app'){
             steps{
                 script{
                     echo"building the application"
@@ -115,12 +115,12 @@ git push
 **7** Creat a Job
 go back to dashboard
 click on create a job
-enter the item name **jenkins-terraform-project**
+enter the item name **automated-build-deploy-java**
 select pipeline and click ok
 ![](newjob-1.png)
 
 **8** Configuring the pipeline
-Dashboard --> jenkins-terraform-project --> configuration
+Dashboard --> automated-build-deploy-java --> configuration
 scroll down to pipeline
 select a pipeline from SCM
 click on the dropdown at SCM and select git
@@ -132,3 +132,21 @@ click on the dropdown arrow for credentials and select the crudentials you just 
 select the branch you are using on your repo **main**
 click on save
 click on build now
+![](Stage1 build success-2.png)
+
+to check your target folder
+go to workspaces
+click on the build link
+click on target
+!(Target folder.png)
+
+Stage 2: Build Docker Image and push to DockerHub
+create a file called Dockerfile
+in other to push the image to dockerhub, we need to add our credentials in jenkins
+
+
+add dockerhub credentials in Jenkins
+go to dashboard --> manage jenkins --> credentials --> system --> global credentials
+input username, password and id
+click on create
+![alt text](dockerhubcred.png)
