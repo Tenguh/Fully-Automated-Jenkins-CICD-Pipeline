@@ -5,7 +5,7 @@ pipeline {
         maven 'maven-3.6'
     }
     environment{
-        IMAGE_NAME = "tenguhh/automated-build-deploy-java:java-maven-app-1.0"
+        IMAGE_NAME = "tenguhh/automated-build-deploy-java:java-maven-app-1.0 ."
     }
     stages{
         stage("build app"){
@@ -25,7 +25,7 @@ pipeline {
     
        sh'''
        sudo echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-       sudo docker build -t $IMAGE_NAME .
+       sudo docker build -t $IMAGE_NAME 
        sudo docker push $IMAGE_NAME
        '''
 }
