@@ -5,7 +5,7 @@ pipeline {
         maven 'maven-3.6'
     }
     environment{
-        IMAGE_NAME = "tenguhh/automated-build-deploy-java:java-maven-app-1.0 ."
+        IMAGE_NAME = "tenguhh/automated-build-deploy-java:java-maven-app-1.0"
     }
     stages{
         stage("build app"){
